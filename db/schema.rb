@@ -16,21 +16,17 @@ ActiveRecord::Schema.define(version: 2019_09_10_084427) do
   enable_extension "plpgsql"
 
   create_table "challenges", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_challenges_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.integer "age", null: false
-    t.string "city", default: "", null: false
-    t.string "discipline", default: "", null: false
-    t.string "style", default: "", null: false
   end
 
   create_table "sessions", force: :cascade do |t|
